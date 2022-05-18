@@ -1,0 +1,177 @@
+<div class="container">
+    <div class="main-body pt-5">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{userDetailss.Name}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3"> 
+              
+              </div>
+            </div> 
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                    <form action="/edit-profile/{{user._id}}" method="post" id="Form">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Name" id="Name" value="{{userDetailss.Name}}">
+                               <span id="errorName" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                     <div class="col-sm-6 text-secondary">
+                    <input type="email" name="Email" id="Email" value="{{userDetailss.Email}}">
+                     <span id="errorEmail" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                     <div class="col-sm-7 text-secondary">
+                   <input type="tel" name="Mobile" id="Mobile" value="{{userDetailss.Mobile}}">
+                   <span id="errorMobile" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                  
+                 
+                  <div class="row">
+                       <div class="col-sm-12">
+                          <button class="btn btn-outline-warning" type="submit">Update</button>
+                       </div>
+                       
+                  </div>
+
+                  </form>
+                </div>
+              </div>
+
+               <div class="row gutters-sm">
+                 {{#each address}}
+                <div class="col-sm-6 mb-3">
+                  
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-warning mr-2">1</i>Address</h5>
+                      <hr>
+                    <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Flat</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary mb-3">
+                   	<p>{{this.Flat}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 mb-3">
+                      <h6 class="mb-0">Place</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary mb-3">
+                   	<p>{{this.Place}}</p>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-sm-4 mb-3">
+                      <h6 class="mb-0">Street</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary mb-3">
+                   	<p>{{this.Street}}</p>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-sm-4 mb-3">
+                      <h6 class="mb-0">Pincode</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary mb-3">
+                   	<p>{{this.Pincode}}</p>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-sm-4 mb-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary mb-3">
+                   	<p>{{this.Mobile}}</p>
+                    </div>
+                  </div>
+
+
+                     
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+              </div> 
+
+
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <script>
+  const name = document.getElementById("Name");
+  const email = document.getElementById("Email");
+  const mobile = document.getElementById("Mobile");
+  const form = document.getElementById("Form");
+  const error1 = document.getElementById("errorName");
+  const error2 = document.getElementById("errorEmail");
+  const error3 = document.getElementById("errorMobile");
+  form.addEventListener('submit', (e) => {
+    let message1 = []
+    let message2 = []
+    let message3 = []
+    if (name.value === '' || name.value == null) {
+      message1.push('Please enter the name')
+    }
+    if (email.value === '' || email.value == null) {
+      message2.push('Please enter the email')
+    }
+
+    if (mobile.value === '' || mobile.value == null) {
+      message3.push('Please enter the mobile')
+    }
+    else if(isNaN(mobile.value)==true){
+      message3.push('Only numbers is allowed')
+    }
+    else if (mobile.value.length< 10) {
+      message3.push('mobile should be 10 numbers')
+    }
+    
+
+    if (message1.length > 0) {
+      e.preventDefault();
+      error1.innerText = message1.join('  ')
+    }
+    if (message2.length > 0) {
+      e.preventDefault()
+      error2.innerText = message2.join('  ')
+    }
+    if (message3.length > 0) {
+      e.preventDefault()
+      error3.innerText = message3.join('  ')
+    }
+  })
+</script>

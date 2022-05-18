@@ -1,0 +1,60 @@
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand h4" href="/" style="font-family:cursive">ADMIN <span style="font-family:cursive">PANEL</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/admin">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">Dashboard
+</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/view-foods">Home</a>
+          </li>
+		   <li class="nav-item">
+            <a class="nav-link" href="/view-categoryy/:category#catg">Category</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+          
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">  
+              {{#if user}}
+                  {{user.Name}}
+                  {{else}}
+              Account
+         
+              {{/if}}
+            </a>
+           
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              {{#if user}}
+         <a class="dropdown-item" href="/logout">Logout</a>
+                 
+                  {{else}}
+              
+         <a class="dropdown-item" href="/login">Login</a>
+              {{/if}}
+             
+              
+            </ul>
+          </li>
+           <li>
+				<div class="header-icons mx-5">
+					<a class="shopping-cart" href="/cartt"><i class="fas fa-shopping-cart"></i><span class="badge badge-pill badge-warning mx-2" id="cart-count">{{cartCount}}</span></a>
+					<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+				</div>
+			</li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav> 

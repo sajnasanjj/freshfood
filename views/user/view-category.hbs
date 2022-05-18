@@ -1,0 +1,102 @@
+
+	<!-- breadcrumb-section -->
+	<div class="product-section mt-5" >
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">C</span>ategories</h3>
+					</div>
+				</div>
+			</div>
+	<!-- end breadcrumb section -->
+	<section id="catg">
+
+	
+	<div class="row">
+                <div class="col-md-12">
+                    <div class="product-filters active">
+                        <ul>
+							{{#each categories}}
+                        <a href="{{this.Category}}" class=""> <li class="">{{this.Category}}</li></a>
+							{{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+		
+           <div class="container-fluid">
+			   <div class="container">
+			<div class="row" id="catgory">
+				
+       {{#each catproduct}}
+	   
+				<div class="col-lg-3 col-md-6 text-center strawberry">
+					<div class="single-product-item ">
+						<div class="product-image">
+							<a href="/single/{{this._id}}"><img src="/food-images/{{this._id}}.jpg" alt="Image" style="height:13em"></a>
+						</div>
+                        <span class="category active" href="/cat">{{this.Category}}</span>
+						<h3>{{this.Name}}</h3>
+						<h5 class="product-price">Rs {{this.Price}} <del class="text-danger">{{this.actualPrice}}</del></h5>
+						<button onclick="addToCart('{{this._id}}')" style="background-color:#ec7a1c; border-radius:20px;"><a href="/#specials" class="btn text-white"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+					</div>
+				</div>
+     {{/each}}
+	   <hr>
+
+	 </div>
+	</div>
+	</div>
+		
+	</section>
+
+ 
+	<div class="container"> 
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+					</div>
+				</div>
+			</div>
+			<div class="row"> 
+       {{#each food}}
+				<div class="col-lg-3 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image ">
+							<a href="/single/{{this._id}}"><img src="/food-images/{{this._id}}.jpg" alt="Image" style="height:12em"></a>
+						</div>
+                        <span class="category" href="/cat">{{this.Category}}</span> 
+                        {{!-- {{#if this.wish}}
+						<a onclick="deleteWish('{{this._id}}')" class="text-white p-1" style="background-color:#f1e8e8; border-radius:10px; height:30px;width:30px;button-decoration:none;"><i class="fas fa-heart text-danger"></i></a>
+						{{else}}
+						<a onclick="addToWish('{{this._id}}')" class="text-white p-1" style="background-color:#f1e8e8; border-radius:10px; height:30px;width:30px;button-decoration:none;"><i class="fas fa-heart text-secondary"></i></a>
+                        {{/if}} --}}
+
+						<h3>{{this.Name}}</h3>
+						<h5 class="product-price">Rs {{this.Price}} <del class="text-danger">{{this.actualPrice}}</del></h5>
+						<button onclick="addToCart('{{this._id}}')" style="background-color:#ec7a1c; border-radius:20px;"><a href="/#specials" class="btn text-white"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+					</div>
+				</div>
+     {{/each}}
+	 </div>
+	</div>
+  
+
+  <style>
+	  .product-filters li:hover
+
+	  {
+		  background-color: #ec7a1c;
+		  color: white;
+		  border-color:white;
+	  },
+	 .product-filters li:active {
+		 background-color: #ec1c1c;
+		 text-decoration: underline;	 }
+	
+  </style>
+
+ 
+
+	

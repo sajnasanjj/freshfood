@@ -1,0 +1,71 @@
+<body class="main-bg">
+     <div class="login-container text-c animated flipInX">
+        <div>
+            <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+        </div>
+        <h3 class="text-whitesmoke"></h3>
+        <p class="text-whitesmoke">User OTP Login</p>
+        <form class="margin-t" action="/loginotp" method="post" id="loginotp" enctype="multipart/form-data">
+            <div class="d-flex flex-wrap justify-content-between bottom-content">
+                
+                {{#if blockErr}}
+                  <p class="error mt-3 text-warning">  You are temporarily blocked by admin</p>
+                {{/if}}
+                {{#if otpErr}}
+                   <p class="error mt-3 text-warning"> Server is Busy</p>
+                {{/if}}
+                {{#if noUser}}
+                   <p class="error mt-3 text-warning">Invalid mobile number</p> 
+                {{/if}}
+            </div>
+            <div class="container-content">
+               
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Mobile " id="Mobile" name="Mobile">
+                        <span id="errorMobile" style="color:red"></span>
+
+                    </div>
+
+                    <button type="submit" class="form-button button-l margin-b">Send OTP</button>
+
+                    {{!-- <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a> --}}
+                    {{!-- <p class="text-whitesmoke text-center"><small>Resend OTP</small></p> --}}
+                    <a class="text-darkyellow" href="/login"><small>Back to Login</small></a>
+
+                    {{!-- <a class="lost-pass" href="/loginotp">Login with OTP</a> --}}
+
+
+            </div>
+        </form>
+
+    </div>
+</body>
+<script>
+  
+  const mobile = document.getElementById("Mobile");
+  const form = document.getElementById("loginotp");
+  
+  const error1 = document.getElementById("errorMobile");
+  form.addEventListener('submit', (e) => {
+    let message1 = []
+    
+   
+    if (mobile.value === '' || mobile.value == null) {
+      message1.push('Please enter the mobile')
+    }
+    else if(isNaN(mobile.value)==true){
+      message1.push('Only numbers is allowed')
+    }
+    else if (mobile.value.length< 10) {
+      message1.push('mobile should be 10 numbers')
+    }
+    
+
+    if (message1.length > 0) {
+      e.preventDefault();
+      error1.innerText = message1.join('  ')
+    }
+   
+  })
+
+</script>

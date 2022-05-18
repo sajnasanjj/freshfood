@@ -1,0 +1,52 @@
+<body class="main-bg">
+    <div class="login-container text-c animated flipInX">
+        <div>
+            <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+        </div>
+        
+        <form class="margin-t" action="/login/otp" method="post" id="loginOtp" enctype="multipart/form-data">
+            <div class="d-flex flex-wrap justify-content-between bottom-content">
+                    {{#if invalidOtp}}
+                    <p class="error mt-3 text-warning">Invalid OTP</p>
+                    {{/if}}
+                </div>
+                <div class="container-content">
+
+                
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Enter OTP" id="otp" name="otp">
+                    </div>
+
+                    <button type="submit" class="form-button button-l margin-b">Verify</button>
+
+                    {{!-- <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a> --}}
+                    <a class="text-darkyellow" href="/login"><small>Back to Login</small></a>
+
+
+
+            </div>
+        </form>
+    </div>
+</body>
+
+
+ {{#if loginErr}}
+<div class="alert alert-danger" role="alert">
+    Invalid password
+</div>
+{{/if}}
+{{#if blockErr}}
+<div class="alert alert-danger" role="alert">
+    You are temporarily blocked by admin
+</div>
+{{/if}}
+{{#if otpErr}}
+<div class="alert alert-danger" role="alert">
+    Server is Busy
+</div>
+{{/if}}
+{{#if noUser}}
+<div class="alert alert-danger" role="alert">
+    Invalid mobile number
+</div>
+{{/if}} 

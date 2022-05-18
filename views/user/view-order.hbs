@@ -1,0 +1,148 @@
+<!-- breadcrumb-section -->
+<div class="product-section mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="section-title">
+					<h3><span class="orange-text">Order</span>details</h3>
+				</div>
+			</div>
+		</div>
+		<!-- end breadcrumb section -->
+
+		<!doctype html>
+		<html lang="en">
+
+		<head>
+			<title>Table 06</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+			<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'
+				type='text/css'>
+
+			<link rel="stylesheet"
+				href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+			<link rel="stylesheet" href="/table/css/style.css">
+
+		</head>
+
+		<body>
+
+
+			<div class="col-md-12">
+				<div class="table-wrap">
+					<table class="table">
+						<thead class="thead-primary">
+							<tr>
+								<th>Date</th>
+								<th>Location</th>
+								<th>Mobile</th>
+								{{!-- <th>Price</th> --}}
+								<th>Payment-Method</th>
+								<th scope="col">Status</th>
+								<th class="text-center" scope="col">Option
+
+								</th>
+								{{!-- <th>Cancel</th> --}}
+							</tr>
+						</thead>
+						<tbody>
+							{{#each orders}}
+							<tr class="alert" role="alert">
+
+								<td>{{this.date}}</td>
+								<td>{{this.deliveryDetails.location}}</td>
+								<td>{{this.deliveryDetails.Mobile}}</td>
+								{{!-- <td>{{this.Price}}</td> --}}
+								<td>{{this.paymentMethod}}</td>
+								<td>{{this.status}}</td>
+								<td>
+									{{#if cancel}}
+									<button class="btn-sm btn-danger">Canceled</button>
+									<a href="/view-order-pro/{{this._id}}"><button
+											class="btn-sm btn-outline-secondary">View</button></a>
+									{{else if deliver}}
+									<button class="btn-sm btn-success">Delivered</button>
+
+									<a href="/view-order-pro/{{this._id}}"><button
+											class="btn-sm btn-outline-secondary">View</button></a>
+
+									{{else}}
+									<a onclick="removeOrder('{{this._id}}','{{this.userId}}','{{this.total}}','{{this.paymentMethod}}','{{this.status}}')"
+										class="btn btn-outline-danger">Cancel</a>
+
+									{{!-- <a
+										onclick="removeOrder('{{this._id}}',{{this.userId}},{{this.total}},{{this.paymentMethod}}','{{this.status}}')"
+										class="btn btn-outline-danger"
+										href="/status-change?id={{this._id}}&name=canceled">canceled</a> --}}
+									<a href="/view-order-pro/{{this._id}}"><button
+											class="btn-sm btn-outline-secondary">View</button></a>
+									{{/if}}
+								</td>
+
+
+
+
+								{{!-- <td><a href="">
+										<button type="button" class="close btn"
+											style="background-color:rgb(203, 95, 17)" data-dismiss="alert"
+											aria-label="Close">
+											<span aria-hidden="true"><i class="fa fa-close"></i></span></a>
+									</button>
+								</td> --}}
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+</div>
+</section>
+<script>
+
+	function removeOrder(orderId, userId, total, paymentMethod, status) {
+		$.ajax({
+			url: '/cancel-order',
+			data: {
+				orderId: orderId,
+				userId: userId,
+				total: total,
+				paymentMethod: paymentMethod,
+				status: status
+			}, method: 'post',
+			success: (response) => {
+				console.log("...", response)
+				if (response.cancelOrder) {
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'center',
+						showConfirmButton: false,
+						timer: 1000,
+						timerProgressBar: true,
+						didOpen: (toast) => {
+							toast.addEventListener('mouseenter', Swal.stopTimer)
+							toast.addEventListener('mouseleave', Swal.resumeTimer)
+						}
+					})
+					Toast.fire({
+						icon: 'success',
+						title: 'Canceled'
+					})
+					location.reload()
+				}
+			}
+		})
+	}  
+</script>
+<script src="/table/js/jquery.min.js"></script>
+<script src="/table/js/popper.js"></script>
+<script src="/table/js/bootstrap.min.js"></script>
+<script src="/table/js/main.js"></script>
+
+
+</body>
+
+</html>

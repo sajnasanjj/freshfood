@@ -1,0 +1,94 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:60px">
+   <div class="container-fluid ">
+		<div class="row">
+			<div class="row">
+				<div class="col-md-6">
+					<a href="/"><img
+							src="/public/images/pngfood-eco-fresh-food-logo-png-image_5825654-removebg-preview (3).png"
+							style="width:100px;height:100px;margin-top:27px;"></a>
+				</div>
+				<div class="col-md-6">
+					<a href="/"><img
+							src="/public/images/fresh-removebg-preview.png"
+							alt="" style="width:300px;height980px;margin-left:-110px; margin-top:10px;"></a>
+				</div>
+			</div>
+		</div>
+		<div class="row pt-2">
+			<div class="col-md-7">
+				<div class="header-icons mx-3">
+						<ul>
+							
+								<a class="shopping-cart" href="/cartt"><i class="fas fa-shopping-cart"></i><span
+										class="badge badge-pill badge-warning mx-1"
+										id="cart-count">{{cartCount}}</span></a>
+								<a href="/wishlist"><i class="fa fa-heart" aria-hidden="true"></i><span
+										class="badge badge-pill badge-warning mx-1"
+										id="wish-count">{{wishCount}}</span></a>
+								{{!-- <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a> --}}
+								<a href="/user-profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+					
+				
+					</ul>
+					</div>
+				
+				</div>
+				<div class="col-md-5">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse float-end" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 float-right"
+						style="align-contents:flex-end,margin-right:200em">
+
+
+						<li class="nav-item">
+							<a class="nav-link" href="/view-order">Orders</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/view-categoryy/:category#catg">Category</a>
+						</li>
+
+						<li class="nav-item dropdown float-right">
+
+							<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								{{#if user}}
+								{{user.Name}}
+								{{else}}
+								Account
+
+								{{/if}}
+							</a>
+
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+								{{#if user}}
+								<a class="dropdown-item" href="/logout">Logout</a>
+
+								{{else}}
+
+								<a class="dropdown-item" href="/login">Login</a>
+								{{/if}}
+
+
+							</ul>
+						</li>
+						<li>
+							</ul>
+				</div>
+
+				</div>
+	  </nav> 
+    </div>
+  
+
+			</div>
+			
+		</div>
+      
+				
+
+  

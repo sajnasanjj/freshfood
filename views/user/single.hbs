@@ -1,0 +1,73 @@
+	<!-- breadcrumb-section -->
+	<div class="product-section mt-100" >
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">{{details.Name}}</h3>
+					</div>
+				</div>
+			</div>
+	<!-- end breadcrumb section -->
+
+	<!-- single product -->
+	<div class="single-product  mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="single-product-img" id="Image-container">
+							<img src="/food-images/{{details._id}}.jpg" alt="Image">
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						
+						<p class="single-product-pricing"><span></span> Rs {{details.Price}}</p>
+						<p>Knowing what foods we should and shouldn’t be eating can be really confusing, especially when it feels like the advice changes regularly. However, evidence suggests that as well as affecting our physical health, what we eat may also affect the way we feel.
+							</p>
+
+							<h6>Your Favourite food, delivered with Food Delivery</h6>
+						{{!-- <div class="single-product-form">
+							<form action="index.html">
+								<input type="number" placeholder="0">
+							</form> --}}
+							<br>
+					<button onclick="addToCart('{{details._id}}')" style="background-color:#ec7a1c; border-radius:20px;"><a
+							href="/#specials" class="btn-lg text-white"><i class="fas fa-shopping-cart"></i> Add to
+							Cart</a></button>
+							
+							<br><br>
+							<p><strong>Categories: </strong>{{details.Category}}</p>
+						</div>
+						{{!-- <h4>Share:</h4>
+						<ul class="product-share">
+							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul> --}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end single product -->
+
+	
+
+	
+	<script>
+     var options = {
+       width:285,
+       height:200,
+       zoomWidth:200,
+       offset: {vertical:220,horizontal:-300},
+       scale:1.5,
+	 
+       
+     };
+
+      new ImageZoom(document.getElementById("Image-container"),options);
+   </script>
+	
+	

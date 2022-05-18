@@ -1,0 +1,61 @@
+<!-- breadcrumb-section -->
+<div class="product-section mt-5" >
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Product</span>Details</h3>
+					</div>
+				</div>
+			</div>
+			</div>
+	<!-- end breadcrumb section -->
+
+	<!-- cart -->
+	<div class="cart-section mb-150">
+		<div class="container text-center">
+			<div class="row">
+					
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									
+									<th class="No"></th>
+									<th class="product-image">Product Image</th>
+									<th class="product-name">Name</th>
+									<th class="product-price">Price</th>
+									
+									<th class="product-total">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+									{{#each food}}
+								<tr class="table-body-row">
+									{{!-- {{#each this.food}} --}}
+									<td>{{inc @index}}</td>
+					              <td><a href="/single/{{this.food._id}}"><img src="/food-images/{{this.food._id}}.jpg" style="width:70px;height:50px" alt="Image"></a></td>
+
+									<td class="product-name">{{this.food.Name}}</td>
+									<td class="product-price">{{this.food.Price}}</td>
+
+
+
+									<td class="product-total">{{this.quantity}}</td>
+								
+								</tr>
+								
+							
+								{{/each}}
+							</tbody>
+							
+						</table>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->

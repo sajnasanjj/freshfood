@@ -1,0 +1,265 @@
+<div class="container bg-white">
+    <div class="row">
+        <div class="col-md-5">
+            <div id="left">
+                <div id="image-section"> <img src="https://i.imgur.com/CtL3oQp.jpg" alt=""> </div>
+                <div class="brand">
+                    <div id="coupon">
+                        <div class="h4 text-uppercase">coupon</div>
+                    </div>
+                    <h1 class="text-uppercase">burger</h1>
+                    <h1 class="text-uppercase pl-md-4 pl-sm-2">world</h1>
+                </div>
+                <div class="d-md-flex flex-md-row" id="validity">
+                    <div class="px-lg-5 px-md-3">Valid upto</div>
+                    <div class="px-md-3 ml-auto">April 30</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div id="line"></div>
+        </div>
+        <div class="col-md-5 col-sm-12">
+            <div class="h3 text-uppercase pt-md-4" id="offer">up to 50% off</div>
+            <div id="offer-description">
+                <p>Tap offer to copy the coupon code</p>
+                <p>Remember to paste when you checkout</p>
+                <p> Online only</p>
+                 </div>
+            <div class="d-flex flex-row justify-content-center rounded mt-4">
+                <div class="btn px-xl-5 px-lg-4 px-md-3 px-sm-5 px-4">
+                    <div class="d-flex flex-column">
+                        <div><span class="fa fa-share-alt fa-2x"></span></div>
+                        <div class="text-uppercase font-weight-bold">share</div>
+                    </div>
+                </div>
+                <div class="btn px-xl-5 px-lg-4 px-md-3 px-sm-5 px-4">
+                    <div class="d-flex flex-column">
+                        <div><span class="fa fa-envelope-o fa-2x"></span></div>
+                        <div class="text-uppercase font-weight-bold">mail</div>
+                    </div>
+                </div>
+                <div class="btn px-xl-5 px-lg-4 px-md-3 px-sm-5 px-4">
+                    <div class="d-flex flex-column">
+                        <div><span class="fa fa-star-o fa-2x"></span></div>
+                        <div class="text-uppercase font-weight-bold">save</div>
+                    </div>
+                </div>
+            </div>
+            <div id="expiry" class="font-weight-bold">
+                <div class="px-3">Valid upto</div>
+                <div class="px-3">April 30</div>
+            </div>
+             <div class="border-bottom text-muted pt-5 d-flex justify-content-center">Copy and paste the code</div>
+            <div class="d-flex justify-content-center text-uppercase" id="code">alliswell</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+    height: 100vh;
+    background:rgb(229, 226, 226)
+}
+
+.container {
+    border-radius: 10px;
+    padding: 0 2px;
+    margin: 150px auto;
+    position: relative;
+    height: 400px
+}
+
+#left {
+    position: relative
+}
+
+#image-section {
+    position: relative
+}
+
+#image-section img {
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    position: absolute;
+     left: 15%;
+    top: -100px
+}
+
+#coupon {
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -30px;
+    bottom: 15%;
+    color:#ec7a1c;
+    font-weight: bold
+}
+
+.brand {
+    padding-top: 150px;
+    padding-left: 150px;
+    padding-bottom: 10px;
+    position: relative
+}
+
+.brand h1 {
+    font-weight: bolder;
+    color: #ec7a1c;
+
+}
+
+#validity {
+    position: absolute;
+    width: 100%;
+    bottom: -110px
+}
+
+.row {
+    height: 100%
+}
+
+#line {
+    background-color:#ec7a1c;
+    clip-path: polygon(59% 0, 68% 0, 8% 100%, 0% 100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0
+}
+
+#offer {
+    color:#ec7a1c;
+    text-align: center;
+    font-weight: bold
+}
+
+#offer-description {
+    padding-top: 20px
+}
+
+#offer-description p {
+    text-align: center;
+    margin: 2px;
+    font-weight: bold
+}
+
+.btn {
+    border: 1px solid #ddd
+}
+
+.btn:last-child {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px
+}
+
+.btn:nth-child(2) {
+    border-radius: 0px;
+    border-left: none;
+    border-right: none
+}
+
+.btn:first-child {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px
+}
+
+.btn:hover {
+    color: #fff;
+    background-color:#ec7a1c;
+}
+
+#code {
+    font-size: 2rem;
+    font-weight: 600
+}
+
+#expiry {
+    display: none
+}
+
+@media(min-width:768px) and (max-width:991px) {
+    #image-section img {
+        width: 250px;
+        height: 170px;
+        left: 15%;
+        top: -80px
+    }
+
+    .brand {
+        padding-left: 100px
+    }
+
+    #offer-description p:nth-child(2) {
+        text-align: center
+    }
+}
+
+@media(max-width:767px) {
+
+    .col-md-2,
+    #validity {
+        display: none
+    }
+
+    .container {
+        border-radius: 10px;
+        margin-top: 50px;
+        padding: 0 2px;
+        position: relative;
+        height: 800px
+    }
+
+    #image-section img {
+        position: relative;
+        left: 10;
+        top: 20px
+    }
+
+    #image-section {
+        height: 150px
+    }
+
+    .brand {
+        padding-top: 150px;
+        padding-left: 100px
+    }
+
+    #coupon {
+        bottom: 10%
+    }
+
+    .brand h1 {
+        display: inline-block
+    }
+
+    #offer-description p {
+        font-size: 1.3rem
+    }
+
+    #expiry {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 10px
+    }
+}
+
+@media(min-width:320px)and (max-width:440px) {
+    #image-section img {
+        display: flex;
+        justify-content: center;
+        left: 10px
+    }
+
+    .brand {
+        padding-left: 60px
+    }
+
+    .container {
+        margin-left: 10px;
+        width: 120%
+    }
+}
+</style>
+

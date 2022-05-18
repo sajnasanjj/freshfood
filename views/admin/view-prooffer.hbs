@@ -1,0 +1,56 @@
+ <div class="container">
+<a href="/admin/productOffers"> <button type="submit" class="btn btn-danger float-end my-3">Add Offer</button></a>
+
+<table class="table">
+   
+  <thead>
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Item</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Offer</th>
+      <th>Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+       {{#each proOffer}}
+    <tr>
+      <td>{{inc @index}}</td>
+      <td>{{this.Name}}</td>
+      <td>{{this.StartDate}}</td>
+      <td>{{this.EndDate}}</td>
+      <td>{{this.percentage}}</td>
+<td>
+       <button class="btn btn-danger" onclick="sweetalertClick2('/admin/delete-productOffer?id={{this._id}}')">Delete</button></td>
+    </tr>
+  
+   
+  </tbody>
+   {{/each}}
+
+</table>
+
+</div>
+
+<script>
+
+  function sweetalertClick2(value1){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    {window.location=value1
+    }
+  }
+  })
+}
+</script>

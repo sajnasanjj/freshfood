@@ -1,0 +1,77 @@
+
+<div class="container">
+<a href="/admin/addFoods"> <button type="submit" class="btn btn-danger float-end my-3">Add foods</button></a>
+
+<table class="table">
+   
+  <thead>
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Category</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+       {{#each food}}
+    <tr>
+      <td>{{inc @index}}</td>
+
+      </td>
+      <td>{{this.Category}}</td>
+
+      <td>{{this.Name}}</td>
+      <td>{{this.Price}}</td>
+      
+      <td><img src="/food-images/{{this._id}}.jpg" alt="" srcset="" id="Image" style="width:150px;height:90px"></td>
+
+      <td><button class="btn btn-primary" onclick="sweetalertClick1('/admin/edit-foods/{{this._id}}')">Edit</button>
+       <button  class="btn btn-danger " onclick="sweetalertClick2('/admin/delete-foods/{{this._id}}')"> Delete</button></td>
+    
+    </tr>
+   
+   
+  </tbody>
+  {{/each}}
+</table>
+
+</div>
+
+<script>
+
+  
+  function sweetalertClick1(value){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Edit it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location =value
+   
+  }
+})
+}
+  function sweetalertClick2(value1){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    {window.location=value1
+    }
+  }
+  })
+}
+</script>

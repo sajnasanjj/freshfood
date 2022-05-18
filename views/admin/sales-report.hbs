@@ -1,0 +1,308 @@
+<div class="container-mt-5">
+
+
+    <div class="row">
+<div class="row">
+        <div class="mb-4">
+            <h3><strong>Sales Report</strong> <small>
+                    <strong>{{data.start}} to {{data.end}}</strong></small></h3>
+        </div>
+         
+         
+   
+</div>
+
+        <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Sales</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{data.totalOrderSuccess}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="col-lg-3 col-md-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Revenue</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{data.total}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/admin/sales-report" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Starting Date</label>
+                        <input type="date" class="form-control" id="start" name="StartDate" required>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                        <label>Ending Date</label>
+                        <input type="date" class="form-control" id="end" name="EndDate" required>
+                    </div>
+                    <div>
+                        <div class="ml-5" style="margin-top: 28px;">
+                            <input type="submit" value="Submit" class="btn btn-success ml-4">
+                        </div>
+                    </div>
+                </div>
+        
+
+<br><br>
+
+<table id="example" class="display" style="width:100%">
+        <thead>
+           
+            <tr>
+                <th>Date</th>
+                <th>Order id</th>
+                <th>User id</th>
+                <th>Total</th>
+                <th>Mobile</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+             {{#each order}}
+            <tr>
+                <td>{{this.date}}</td>
+                <td>{{this._id}}</td>
+                <td>{{this.userId}}</td>
+                <td>{{this.total}}</td>
+                <td>{{this.deliveryDetails.Mobile}}</td>
+                <td>{{this.paymentMethod}}</td>
+                <td>{{this.status}}</td>
+            </tr>
+             {{/each}}
+          
+            
+        </tbody>
+      
+    </table>
+
+    
+            </form>
+            </div>
+    </div>
+  
+        {{!-- <div class="col-md-4 mb-3">
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-investment"></i> Total Sales
+                        </h6>
+                        <span class="text-secondary">{{data.totalSales}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-shopping-basket"></i> Total
+                            Orders</h6>
+                        <span class="text-secondary">{{data.totalOrders}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-credit-cards"></i> Conformed
+                            Orders</h6>
+                        <span class="text-secondary">{{data.successOrders}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-warning"></i>Failed Order
+                        </h6>
+                        <span class="text-secondary">{{data.faildOrders}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-paypal"></i> Paypal Payment
+                        </h6>
+                        <span class="text-secondary">{{data.paypal}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-google-wallet"></i> Razorpay
+                        </h6>
+                        <span class="text-secondary">{{data.razorpay}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><i class="lni lni-wallet"></i> Cash On Delivery
+                        </h6>
+                        <span class="text-secondary">{{data.cod}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div> --}}
+
+          <div class="row gutters-sm text-center">
+        <div class="col-md-8">
+            <div class="card mb-3 mt-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Order Summary
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <canvas id="myChart" width="1000" height="412"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+                {{!-- <div class="col-md-6">
+            <div class="card mb-3 mt-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area"></i>
+                            Payment Summary
+                        </div>
+                        <div class="card-body"><canvas id="line" width="1000" height="450"></canvas></div>
+                    </div>
+                </div> --}}
+        </div>
+
+
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+
+            <!-- Project Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Order Details</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">Total Order<span class="float-right">{{data.orderLength}}%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{data.orderLength}}%"
+                            aria-valuenow="{{data.orderLength}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Success<span
+                            class="float-right">{{data.totalOrderSuccess}}%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" role="progressbar"
+                            style="width:{{data.totalOrderSuccess}}%" aria-valuenow="{{data.totalOrderSuccess}}"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Pending<span class="float-right">{{data.pending}}%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar" role="progressbar" style="width:{{data.pending}}%"
+                            aria-valuenow="{{data.pending}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Cancelled <span class="float-right">{{data.cancelOrder}}%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{data.cancelOrder}}%"
+                            aria-valuenow="{{data.cancelOrder}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {{!-- <h4 class="small font-weight-bold">Cancelled <span class="float-right">Complete!%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> --}}
+                </div>
+            </div>
+
+
+
+
+    </div>
+
+
+   
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+    integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Totel Orders', 'Success Orders', 'Fail Orders'],
+            datasets: [{
+                label: 'Order Summary',
+                data: [{{data.orderLength}},{{data.totalOrderSuccess}},{{data.cancelOrder}}],
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+    ],
+        borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+   /* var line = document.getElementById('line').getContext('2d');
+    var chart = new Chart(line, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['COD', 'Paypal', 'Razorpay'],
+            datasets: [{
+                label: 'Payment Method',
+                backgroundColor: 'rgba(342,0,0, 0.5)',
+
+                data: [{{data.COD}},{{data.paypal}},{{data.Razorpay}}],
+			}]
+		},
+
+    // Configuration options go here
+    options: {
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+	}); */
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+       
+            dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+
+
+</script>
+
+
+
+<style>
+    body {
+        color: #1a202c;
+        text-align: left;
+        background-color: #e2e8f0;
+    }
+</style>

@@ -1,0 +1,64 @@
+<body class="main-bg">
+  <div class="login-container text-c animated flipInX">
+    <div>
+      <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+    </div>
+    <h3 class="text-whitesmoke"></h3>
+    <p class="text-whitesmoke"></p>
+        <form class="margin-t" action="/login" method="post" id="Form" enctype="multipart/form-data">
+
+    <div class="d-flex flex-wrap justify-content-between bottom-content">
+         {{#if loginErr}}
+        <p class="error mt-3 text-warning">Invalid Email and Password</p>
+        {{/if}}
+        {{#if BlockErr}}
+        <p class="error mt-3 text-warning">User Blocked by Admin</p>
+        {{/if}}
+    </div>
+      <div class="container-content">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email " id="Email" name="Email">
+            <span id="errorEmail" style="color:red"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" id="Password" name="Password">
+            <span id="errorPassword" style="color:red"></span>
+          </div>
+          <button type="submit" class="form-button button-l margin-b">Login</button>
+          {{!-- <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a> --}}
+          <p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+          <a class="text-darkyellow" href="/signup"><small>Signup</small></a>
+          <a class="lost-pass" href="/loginotp">Login with OTP</a>
+      </div>
+    </form>
+  </div>
+</body>
+<script>
+  const email = document.getElementById("Email");
+  const password = document.getElementById("Password");
+  const form = document.getElementById("Form");
+  const error1 = document.getElementById("errorEmail");
+  const error2 = document.getElementById("errorPassword");
+  form.addEventListener('submit', (e) => {
+    let message1 = []
+    let message2 = []
+    if (email.value === '' || email.value == null) {
+      message1.push('Please enter the email')
+    }
+    if (password.value === '' || password.value == null) {
+      message2.push('Please enter the password')
+    }
+    else if (password.value.length < 3) {
+      message2.push('password must be atleast 3 character')
+    }
+    if (message1.length > 0) {
+      e.preventDefault()
+      error1.innerText = message1.join('  ')
+    }
+
+    if (message2.length > 0) {
+      e.preventDefault()
+      error2.innerText = message2.join('  ')
+    }
+  })
+</script>

@@ -1,0 +1,108 @@
+<body class="main-bg">
+  <div class="login-container text-c animated flipInX">
+    <div>
+      <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+    </div>
+  
+             <form class="margin-t" action="/signup" method="post" id="Form" enctype="multipart/form-data">
+
+    
+        <div class="d-flex flex-wrap justify-content-between bottom-content">
+          {{#if LoginErr}}
+          <p class="error mt-3 text-warning">Email Already Exist</p>
+          {{/if}}
+        </div>
+        <div class="container-content">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" id="Name" name="Name">
+            <span id="errorName" style="color:red"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" id="Email" name="Email">
+            <span id="errorEmail" style="color:red"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" id="Password" name="Password">
+            <span id="errorPassword" style="color:red"></span>
+          </div>
+         
+
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="Mobile" id="Mobile" name="Mobile">
+            <span id="errorMobile" style="color:red"></span>
+            <input type="text" placeholder="Referal code" name ="referedBy" class="form-control" value="{{refer}}" hidden>
+          </div>
+
+          <input type="hidden" name="status" required value="unblock">
+           {{!-- <div class="text-whitesmoke">
+             {{if referErr}}
+             <p class="error mt-5">Incorrect refferal Code</p>
+             {{/if}}
+           </div> --}}
+          <button type="submit" class="form-button button-l margin-b">Signup</button>
+          {{!-- <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a> --}}
+          <p class="text-whitesmoke text-center"><small>Already have an account?</small></p>
+          <a class="text-darkyellow" href="/login"><small>Login</small></a>
+        
+    </div>
+    </form>
+  </div>
+</body>
+<script>
+  const name = document.getElementById("Name");
+  const email = document.getElementById("Email");
+  const password = document.getElementById("Password");
+  const mobile = document.getElementById("Mobile");
+  const form = document.getElementById("Form");
+  const error1 = document.getElementById("errorName");
+  const error2 = document.getElementById("errorEmail");
+  const error3 = document.getElementById("errorPassword");
+  const error4 = document.getElementById("errorMobile");
+  form.addEventListener('submit', (e) => {
+    let message1 = []
+    let message2 = []
+    let message3 = []
+    let message4 = []
+    if (name.value === '' || name.value == null) {
+      message1.push('Please enter the name')
+    }
+    if (email.value === '' || email.value == null) {
+      message2.push('Please enter the email')
+    }
+
+    if (password.value === '' || password.value == null) {
+      message3.push('Please enter the password')
+    }
+    else if (password.value.length < 3) {
+      message3.push('password must be atleast 3 character')
+    }
+    if (mobile.value === '' || mobile.value == null) {
+      message4.push('Please enter the mobile')
+    }
+    else if(isNaN(mobile.value)==true){
+      message4.push('Only numbers is allowed')
+    }
+    else if (mobile.value.length< 10) {
+      message4.push('mobile should be 10 numbers')
+    }
+    
+
+    if (message1.length > 0) {
+      e.preventDefault();
+      error1.innerText = message1.join('  ')
+    }
+    if (message2.length > 0) {
+      e.preventDefault()
+      error2.innerText = message2.join('  ')
+    }
+    if (message3.length > 0) {
+      e.preventDefault()
+      error3.innerText = message3.join('  ')
+    }
+    if (message4.length > 0) {
+      e.preventDefault()
+      error4.innerText = message4.join('  ')
+    }
+  })
+
+</script>

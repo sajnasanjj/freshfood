@@ -1,0 +1,162 @@
+<div class="container">
+    <div class="main-body pt-5">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{user.Name}}</h4>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+               </div>
+
+            
+              <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                    <form action="/addAddress" method="post" id="Form">
+                 <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Flat</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Flat" id="Flat" value="{{address.Flat}}">
+                               <span id="errorFlat" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Place</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Place" id="Place" value="{{address.Place}}">
+                               <span id="errorPlace" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Street</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Street" id="Street" value="{{address.Street}}">
+                               <span id="errorStreet" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Pincode</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Pincode" id="Pincode" value="{{address.Pincode}}">
+                               <span id="errorPincode" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                     <div class="col-sm-9 text-secondary">
+                   <input type="text" name="Mobile" id="Mobile" value="{{address.Mobile}}">
+                               <span id="errorMobile" style="color:red"></span>
+
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="row">
+                       <div class="col-sm-12">
+                          <button class="btn btn-outline-warning" type="submit">Submit</button>
+                       </div>
+                      
+                  </div>
+                   </form>
+                </div>
+              </div>
+            
+          </div>
+</div>
+        </div>
+
+         <script>
+  const flat = document.getElementById("Flat");
+  const place = document.getElementById("Place");
+  const street = document.getElementById("Street");
+  const pincode = document.getElementById("Pincode");
+  const mobile = document.getElementById("Mobile");
+  const form = document.getElementById("Form");
+  const error1 = document.getElementById("errorFlat");
+  const error2 = document.getElementById("errorPlace");
+  const error3 = document.getElementById("errorStreet");
+  const error4 = document.getElementById("errorPincode");
+    const error5 = document.getElementById("errorMobile");
+
+  form.addEventListener('submit', (e) => {
+    let message1 = []
+    let message2 = []
+    let message3 = []
+    let message4 = []
+    let message5 = []
+    if (flat.value === '' || flat.value == null) {
+      message1.push('Please enter the flat')
+    }
+    if (place.value === '' || place.value == null) {
+      message2.push('Please enter the Place')
+    }
+        if (street.value === '' || street.value == null) {
+      message3.push('Please enter the Street')
+    }
+        if (pincode.value === '' || pincode.value == null) {
+      message4.push('Please enter the pincode')
+    }
+    else if(isNaN(pincode.value)==true){
+      message4.push('Only numbers is allowed')
+    }
+
+    if (mobile.value === '' || mobile.value == null) {
+      message5.push('Please enter the mobile')
+    }
+    else if(isNaN(mobile.value)==true){
+      message5.push('Only numbers is allowed')
+    }
+    else if (mobile.value.length< 10) {
+      message5.push('mobile should be 10 numbers')
+    }
+    
+
+    if (message1.length > 0) {
+      e.preventDefault();
+      error1.innerText = message1.join('  ')
+    }
+    if (message2.length > 0) {
+      e.preventDefault()
+      error2.innerText = message2.join('  ')
+    }
+    if (message3.length > 0) {
+      e.preventDefault()
+      error3.innerText = message3.join('  ')
+    }
+     if (message4.length > 0) {
+      e.preventDefault()
+      error4.innerText = message4.join('  ')
+    }
+     if (message5.length > 0) {
+      e.preventDefault()
+      error5.innerText = message5.join('  ')
+    }
+  })
+
+</script>
+    

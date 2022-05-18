@@ -1,0 +1,136 @@
+<!-- home page slider -->
+<div class="homepage-slider">
+	{{#each banner}}
+	<!-- single home slider -->
+	<div class="single-homepage-slider">
+		<img src="/banner-images/{{this._id}}.jpg" alt="Image" style="width:60%;height:50em;" class="float-right mr-5"
+			alt="">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-7 offset-lg-1 offset-xl-0">
+					<div class="hero-text">
+						<div class="hero-text-tablecell m-5">
+							<p class="subtitle">{{this.Heading}}</p>
+
+							<h1>{{this.Subtitle}}</h1>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+</div>
+<!-- end home page slider -->
+
+<!-- product section -->
+<div class="product-section mt-150 mb-150" id="specials">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="section-title">
+					<h3><span class="orange-text">Our</span> Specials</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			{{#each food}}
+			<div class="col-lg-3 col-md-6 text-center">
+				<div class="single-product-item">
+					<div class="product-image">
+						<a href="/single/{{this._id}}"><img src="/food-images/{{this._id}}.jpg" alt="Image"
+								style="height:12em"></a>
+					</div>
+					<span class="category" href="/cat">{{this.Category}}</span>
+
+
+
+					{{#if this.wish}}
+					<a onclick="deleteWish('{{this._id}}')" class="text-white p-1"
+						style="background-color:#f1e8e8; border-radius:10px; height:30px;width:30px;button-decoration:none;"><i
+							class="fas fa-heart text-danger"></i></a>
+					{{else}}
+					<a onclick="addToWish('{{this._id}}')" class="text-white p-1"
+						style="background-color:#f1e8e8; border-radius:10px; height:30px;width:30px;button-decoration:none;"><i
+							class="fas fa-heart text-secondary"></i></a>
+					{{/if}}
+
+
+
+
+
+					<h3>{{this.Name}}</h3>
+					<h5 class="product-price">₹ {{this.Price }} <del class="text-danger">{{ this.actualPrice}}</del>
+					</h5>
+					<button onclick="addToCart('{{this._id}}')" style="background-color:#ec7a1c; border-radius:20px;"><a
+							href="/#specials" class="btn text-white"><i class="fas fa-shopping-cart"></i> Add to
+							Cart</a></button>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
+<!-- end product section -->
+<!-- features list section -->
+<div class="list-section pt-80 pb-80">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-shipping-fast"></i>
+					</div>
+					<div class="content">
+						<h3>Free Shipping</h3>
+						<p>When order over Rs.100</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-phone-volume"></i>
+					</div>
+					<div class="content">
+						<h3>24/7 Support</h3>
+						<p>Get support all day</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="list-box d-flex justify-content-start align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-sync"></i>
+					</div>
+					<div class="content">
+						<h3>Refund</h3>
+						<p>Get refund within 3 days!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<script>
+	function addToWish(fudId) {
+		$.ajax({
+			url: '/add-to-wish/' + fudId,
+			method: 'get',
+			success: (response) => {
+
+				if (response.status) {
+					let count = $('#wish-count').html()
+					count = parseInt(count) + 1
+					$("#wish-count").html(count)
+
+				}
+				location.reload()
+			}
+		})
+	}
+</script>
