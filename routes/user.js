@@ -241,7 +241,7 @@ router.get("/user-profile", verifyLogin, async (req, res) => {
     userHelpers.userAddress(id).then((address)=>{
 
       let refer = user.refer;
-      let referLink = "http://localhost:3000/signup?refer="+refer;
+      let referLink = "http://freshfood.host/signup?refer="+refer;
       res.render("user/user-profile",{
         userDetailss,
         user,
@@ -479,7 +479,8 @@ router.get("/placeorder", verifyLogin, async (req, res) => {
      }
   let total = await userHelpers.getCartAmount(req.session.user._id);
   let userDetails = await userHelpers.getUserDetailss(id);
- 
+  addHelpers.getAllCoupons().then((coupons) => {
+
 
 
   userHelpers.userAddress(id).then((address) => {
@@ -490,8 +491,8 @@ router.get("/placeorder", verifyLogin, async (req, res) => {
       wishCount,
       cartCount,
       address,
-      userDetails
- 
+      userDetails,coupons
+    })
     });
   });
 });
@@ -578,8 +579,8 @@ router.post("/placeorder", async (req, res) => {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: "http://localhost:3000/success",
-          cancel_url: "http://localhost:3000/cancel",
+          return_url: "http://freshfood.host/success",
+          cancel_url: "http://freshfood.host/cancel",
         },
         transactions: [
           {

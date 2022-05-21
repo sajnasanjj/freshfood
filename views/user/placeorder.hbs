@@ -74,17 +74,35 @@
 		</div>
 		<br>
 		<div class="row">
+
 			<div class="col-md-6">
 				<form action="post">
 					<div>
 						<label for="">Apply Coupon Get Discount</label>
-						<div style="display: flex;">
-							<input style="width: 25rem;" type="text" id="Coupon" name="Coupon"
-								placeholder="Coupon Code">
-							<input type="text" id="couponTotal" name="couponTotal" value="{{total}}" hidden>
-							<button onclick="couponApply(event)" id="couponBtn"
-								style="height:31px; width:10rem;:margine-top:-3px; border-radius:5px;"
-								class="btn-outline-secondary">Apply</button>
+						<div >
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-7" style="width: 22rem;">
+										<select name="Coupon" id="Coupon" required
+											class="form-control bg-light text-dark">
+											{{!-- <option value="" aria-placeholder="Coupon code"></option> --}}
+											{{#each coupons}}
+											<option value="{{this.Coupon}}" class="text-dark">{{this.Coupon}}</option>
+											{{/each}}
+										</select>
+									</div>
+									<div class="col-md-2">
+										<input type="text" id="couponTotal" name="couponTotal" value="{{total}}" hidden>
+										<button onclick="couponApply(event)" id="couponBtn"
+											style="height:31px; width:10rem;:margine-top:-3px; border-radius:5px;"
+											class="btn-outline-secondary">Apply</button>
+									</div>
+								</div>
+
+
+
+
+							</div>
 						</div>
 					</div>
 				</form>
@@ -121,7 +139,7 @@
 									style="height:31px; width:10rem;:margine-top:-3px; border-radius:5px;">Apply</button>
 								<Br>
 								WalletAmount = {{userDetails.wallet}}
-								<div class="alert " style="display: block;" id="WallSuccess">
+								<div class="alert " style="display: none;" id="wallSuccess">
 
 
 									Balance = ₹<span id="wallAmount" name="wallAmount" value="{{wallAmount}}"></span>
@@ -158,7 +176,8 @@
 											Billing Address
 										</button>
 
-										<h6 class="text-danger ml-5">Choose address from above <span class="text-secondary"> or Add a address</span>*</h6>
+										<h6 class="text-danger ml-5">Choose address from above <span
+												class="text-secondary"> or Add a address</span>*</h6>
 									</h5>
 								</div>
 								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
@@ -167,21 +186,22 @@
 									<div class="card-body">
 										<div class="billing-address-form">
 											<div class="row">
-										
-												
-													<div class="col-md-2">
-														<a class="btn btn-success" onclick="geolocation()"
-															id="myLocation">Location</a>
-													</div>
-													
-												
+
+
+												<div class="col-md-2">
+													<a class="btn btn-success" onclick="geolocation()"
+														id="myLocation">Location</a>
+												</div>
+
+
 											</div>
 											<form action="/placeorder" method="post" id="checkout-form">
-                                                  <div><p>
+												<div>
+													<p>
 														<input type="text" value="{{value}}" placeholder="location"
-															id="location" name="location" class="form-control bg-light" reqiured>
-</p>
-											    </div>
+															id="location" name="location" class="form-control bg-light" required>
+													</p>
+												</div>
 
 												<div>
 													<p><input type="text" placeholder="Flat" name="Flat" id="Flat"
@@ -329,11 +349,11 @@
 
 
 <script>
-	
+
 	$("#checkout-form").submit((e) => {
-        		locations = document.getElementById('location').value 
- 
-		
+		locations = document.getElementById('location').value
+
+
 		e.preventDefault()
 		$.ajax({
 			url: '/placeorder',
@@ -351,7 +371,7 @@
 			}
 		})
 	})
-    function razorpayPayment(order) {
+	function razorpayPayment(order) {
 		var options = {
 			"key": "rzp_test_NAYzYcMc8iOjjS", // Enter the Key ID generated from the Dashboard
 			"amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -424,7 +444,7 @@
 	var as;
 	var successfulLookup = position => {
 		var { latitude, longitude } = position.coords;
-		
+
 		fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=1085717df00346c7afd25f68b0af2393`)
 			.then(response => response.json())
 			.then(async (result) => {
@@ -526,21 +546,21 @@
 		}
 	})
 	function couponApply(event) {
-		 const Toast = Swal.mixin({
-      toast: true,
-      position: 'center',
-      showConfirmButton: false,
-      timer: 1000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-         toast.addEventListener('mouseenter', Swal.stopTimer)
-         toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-   })
-   Toast.fire({
-      icon: 'success',
-      title: 'Coupon Applied'
-   })
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'center',
+			showConfirmButton: false,
+			timer: 1000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+		Toast.fire({
+			icon: 'success',
+			title: 'Coupon Applied'
+		})
 		event.preventDefault()
 		console.log("tisssss calll....")
 		let couponCode = document.getElementById('Coupon').value
@@ -613,21 +633,21 @@
 
 
 	function applyWallet(event) {
-		 const Toast = Swal.mixin({
-      toast: true,
-      position: 'center',
-      showConfirmButton: false,
-      timer: 1000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-         toast.addEventListener('mouseenter', Swal.stopTimer)
-         toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-   })
-   Toast.fire({
-      icon: 'success',
-      title: 'Wallet Applied'
-   })
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 1000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+		Toast.fire({
+			icon: 'success',
+			title: 'Wallet Applied'
+		})
 		event.preventDefault()
 		console.log("asdvbnm")
 		let walltotal = document.getElementById('wallet').value
