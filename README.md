@@ -1,4 +1,4 @@
-Fresh food - Food delivery application Link to Github
+Fresh food - Food delivery application
 
 Fresh food allows users to find their favorite food based on a restaurant and make deliver online
 
